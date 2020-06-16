@@ -65,19 +65,20 @@ describe('SingUp Controller', () => {
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new MissingParamError('password'))
   })
-  test('Should return 400 if no password confirmation passed', () => {
+  test('Should return 400 if password confimation fails', () => {
     const { sut } = makeSut()
     const httpRequest = {
       body: {
         name: 'random',
         email: 'random@emal.com',
-        password: 'random'
+        password: 'random',
+        passwordConfirmation: 'invalid_password'
       }
     }
     const httpResponse = sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(
-      new MissingParamError('passwordConfirmation')
+      new InvalidParamError('password confirmation')
     )
   })
   test('Should return 400 if invalid email is passed', () => {
