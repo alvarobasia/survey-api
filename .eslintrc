@@ -5,6 +5,6 @@
   },
   "rules": {
     "@typescript-eslint/strict-boolean-expressions" : "off",
-    "space-before-function-paren": ["error"]
+    "space-before-function-paren": ["off"]
   }
 }
